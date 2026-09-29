@@ -87,8 +87,10 @@
 
         android:textColor="@color/red"
         android:textSize="80sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline15"
+        app:layout_constraintEnd_toStartOf="@+id/guideline12"
         app:layout_constraintStart_toEndOf="@+id/play_button"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <TextView
@@ -112,15 +114,14 @@
         android:id="@+id/text1º"
         android:layout_width="80dp"
         android:layout_height="60dp"
-        android:layout_marginTop="8dp"
 
         android:gravity="center"
         android:text="@string/primero"
         android:textColor="@color/white"
         android:textSize="40sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline15"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/text10"
+        app:layout_constraintStart_toStartOf="@+id/guideline7"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -170,11 +171,11 @@
         android:layout_marginTop="8dp"
         android:background="@drawable/play_circle"
 
-        app:backgroundTint="@color/white"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         android:importantForAccessibility="no"
-        />
+        app:backgroundTint="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/guideline15"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <Button
@@ -447,6 +448,13 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.44" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.08" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
