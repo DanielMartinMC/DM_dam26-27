@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">My Application</string>
+    <string name="mas_uno">+1</string>
+    <string name="mas_dos">+2</string>
+    <string name="mas_tres">+3</string>
+    <string name="mas">+</string>
+    <string name="equipo_1">Equipo 1</string>
+    <string name="equipo_2">Equipo 2</string>
+    <string name="treinta_cuatro">34</string>
+    <string name="dieciocho">18</string>
+    <string name="diez_hora">10:00</string>
+    <string name="x">X</string>
+    <string name="primero">1.º</string>
+    <string name="cero">0</string>
+    <string name="editar">EDITAR</string>
+    <string name="compartir">COMPARTIR</string>
 </resources>
