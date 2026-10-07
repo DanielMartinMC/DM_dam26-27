@@ -22,7 +22,7 @@ public class SimuladorDescargas {
                 }
                 System.out.println(archivo + " - Progreso: " + i + "%");
             }
-            System.out.println("✅ ¡Descarga completada: " + archivo + "!");
+            System.out.println("Descarga completada: " + archivo);
         }
     }
 
