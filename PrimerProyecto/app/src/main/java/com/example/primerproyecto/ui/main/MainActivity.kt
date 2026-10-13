@@ -1,5 +1,6 @@
 package com.example.primerproyecto.ui.main
 
+import android.R.attr.button
 import android.app.Activity
 import android.os.Bundle
 import android.widget.Toast
@@ -11,21 +12,28 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.primerproyecto.R
 import com.example.primerproyecto.databinding.ActivityMainBinding
 import com.example.primerproyecto.di.AppModule
+import com.example.primerproyecto.domain.model.Dispositivo
 
 class MainActivity : AppCompatActivity() {
 
     private val binding: ActivityMainBinding by lazy { ActivityMainBinding.inflate(layoutInflater) }
 
     private val viewModel: MainViewModel by viewModels {
-        MainViewModel.MainViewModelFactory(
-            AppModule.dameMovilUseCase
-        )
+        MainViewModelFactory(
+            AppModule.dameMovilUseCase,
+            AppModule.cargarDispositivosUseCase,
+            AppModule.delDispositivoUseCase,
+            AppModule.addDispositivoUseCase,
+
+            )
     }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+
+        viewModel.handleCargarLista()
 
         setContentView(R.layout.binding.root)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
@@ -34,18 +42,30 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
+        configRecycler()
+
         observarEstado()
 
         setupEventos()
 
+
     }
 
     private fun setupEventos() {
-        binding.button.setOnClickListener {
-            // no se cambian interfaz fuera del observable
-            //binding.textView.text = viewModel.damePresidente()
+        with(binding) {
+            button.setOnClickListener {
+                // no se cambian interfaz fuera del observable
+                //binding.textView.text = viewModel.damePresidente()
 
-            viewModel.handleDameMovil()
+                viewModel.handleDameMovil()
+                viewModel.handleCargaLista()
+            }
+
+            buttonAdd.setOnClickListener {
+                var p = Dispositivo(marca = "Apple", modelo = "Iphone 18 ")
+
+                viewModel.handleAdd(p)
+            }
         }
     }
 

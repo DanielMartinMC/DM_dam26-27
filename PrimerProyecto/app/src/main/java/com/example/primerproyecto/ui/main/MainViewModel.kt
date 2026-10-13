@@ -4,14 +4,28 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.primerproyecto.domain.useCases.AddDispositivoUseCase
+import com.example.primerproyecto.domain.useCases.CargarDispositivosUseCase
 import com.example.primerproyecto.domain.useCases.DameMovilUseCase
+import com.example.primerproyecto.domain.useCases.DelDispositivoUseCase
 
-class MainViewModel(val dameMovilUseCase: DameMovilUseCase) : ViewModel(){
+class MainViewModel(
+    private val dameMovilUseCase: DameMovilUseCase,
+    private val cargarDispositivosUseCase: CargarDispositivosUseCase,
+    private val addDispositivoUseCase: AddDispositivoUseCase,
+    private val delDispositivoUseCase: DelDispositivoUseCase,
 
-    private val _state = MutableLiveData<MainState>(MainState("inicio"))
+) : ViewModel(){
+
+    private val _state = MutableLiveData<MainState>(MainState("inicio",listOf()))
 
 
     val state : LiveData<MainState> = _state
+
+    init {
+        handleCargaLista()
+
+    }
 
 
     fun handleDameMovil(): Unit {
@@ -22,6 +36,9 @@ class MainViewModel(val dameMovilUseCase: DameMovilUseCase) : ViewModel(){
         _state.value = _state.value?.copy(movil = mov.toString()) ?: MainState(mov.toString())
     }
 
+    fun handleCargaLista(){
+        _state.value = _state.value?.copy(moviles = cargarDispositivosUseCase.cargarLista())
+    }
 
     class MainViewModelFactory(private val dameMovilUseCase: DameMovilUseCase) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
